@@ -114,9 +114,30 @@ function! opensiv3d#AddSourceFile()
 endfunction
 
 function! opensiv3d#CMake()
-  call system('cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON .')
-  call system('make')
-  call system('./' . g:projectName)
+  let cmakeRes = systemlist('cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON .')
+
+  execute 'redir!>' . './.cmakeres.txt'
+    for i in cmakeRes
+      silent! echon i . "\n"
+    endfor
+  redir END
+
+  :e ./.cmakeres.txt
+endfunction
+
+function! opensiv3d#Make()
+  let makeRes = systemlist('make')
+
+  execute 'redir!>' . './.makeres.txt'
+    for i in makeRes
+      silent! echon i . "\n"
+    endfor
+  redir END
+
+  :e ./.makeres.txt
+endfunction
+
+function! opensiv3d#Execution()
 endfunction
 
 let &cpo = s:save_cpo
