@@ -137,6 +137,11 @@ function! opensiv3d#Make()
   :e ./.makeres.txt
 endfunction
 
+function! opensiv3d#Build()
+  call opensiv3d#CMake()
+  call opensiv3d#Make()
+endfunction
+
 function! opensiv3d#Execution()
 endfunction
 
