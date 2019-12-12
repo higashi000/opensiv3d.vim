@@ -1,3 +1,8 @@
+if exists('g:loaded_opensiv3d')
+  finish
+endif
+let g:loaded_opensiv3d = 1
+
 let s:save_cpo = &cpo
 set cpo&vim
 
